@@ -12,8 +12,12 @@
     </ul>
     <div class="user-input">
       <input v-model="postText" @keyup.enter="submitPost" />
-      <color-box :colors="colors" :setPostColor="setPostColor"></color-box>
-      <button>Submit</button>
+      <color-box
+        :colors="colors"
+        :setPostColor="setPostColor"
+        :toggleActive="toggleActive"
+      ></color-box>
+      <button @click="submitPost">Submit</button>
     </div>
   </div>
 </template>
@@ -32,22 +36,47 @@
       return {
         postText: '',
         postColor: 'skyblue',
-        posts: [{ text: 'it\'s lit!', color: 'green' }],
-        colors: ['crimson', 'skyblue', 'forestgreen', 'goldenrod'],
+        oldColorIndex: 3,
+        posts: [{ text: 'it\'s lit!', color: { color: 'green' } }],
+        colors: [
+          { color: 'crimson', isActive: false },
+          { color: 'skyblue', isActive: false },
+          { color: 'forestgreen', isActive: false },
+          { color: 'goldenrod', isActive: true },
+        ],
       };
     },
     methods: {
       submitPost() {
         this.posts = [...this.posts, { text: this.postText, color: this.postColor }];
         this.postText = '';
-        this.postColor = 'skyblue';
       },
       deletePost(id) {
         this.posts = [...this.posts.slice(0, id), ...this.posts.slice(id, this.posts.length - 1)];
       },
       setPostColor(index) {
-        console.log('grabbed color ', this.colors[index]);
+        this.oldColorIndex = index;
         this.postColor = this.colors[index];
+      },
+      toggleActive(index) {
+        // remove border
+        const oldActiveColor = Object.assign(
+          {},
+          this.colors[this.oldColorIndex],
+          { isActive: false },
+        );
+        const newColors = [
+          ...this.colors.slice(0, this.oldColorIndex),
+          oldActiveColor,
+          ...this.colors.slice(this.oldColorIndex + 1),
+        ];
+        // const newColors = [...this.colors];
+        // newColors[this.oldColorIndex] = oldActiveColor;
+        // add new border
+        const activeColor = Object.assign({}, newColors[index], { isActive: true });
+        this.colors = [...newColors.slice(0, index), activeColor, ...newColors.slice(index + 1)];
+        // newColors[index] = activeColor;
+        // this.colors = newColors;
       },
     },
   };

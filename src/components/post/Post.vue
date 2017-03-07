@@ -1,6 +1,6 @@
 <template>
-  <div class="post" :style="{ color: color }">
-    <h4>{{postText}} color: {{color}}</h4>
+  <div class="post" :style="{ color: color.color }">
+    <h4>{{postText}}</h4>
     <span @click="deletePost(postID)">X</span>
   </div>
 </template>

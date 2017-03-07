@@ -1,12 +1,12 @@
 <template>
-  <div class="test2">
-    <h1>Test2 {{ headerMsg }}</h1>
+  <div class="nested-2">
+    <h1>Nested 2 {{ headerMsg }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'test2',
+  name: 'nested-2',
   data() {
     return {
       headerMsg: 'Welcome',
@@ -17,21 +17,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1 {
   font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  /*display: inline-block;*/
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
 }
 </style>

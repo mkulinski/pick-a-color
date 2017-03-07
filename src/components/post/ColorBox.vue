@@ -2,9 +2,9 @@
   <div class="color-box">
     <div
       v-for="(color, index) in colors"
-      :style="{ backgroundColor: color }"
-      @click="setPostColor(index)"
-      class="box"
+      :style="{ backgroundColor: color.color }"
+      @click="onClick(index, color)"
+      :class="{ box: true, 'add-border': color.isActive }"
     ></div>
   </div>
 </template>
@@ -12,7 +12,13 @@
 <script>
   export default {
     name: 'color-box',
-    props: ['colors', 'setPostColor'],
+    props: ['colors', 'setPostColor', 'toggleActive'],
+    methods: {
+      onClick(idx) {
+        this.toggleActive(idx);
+        this.setPostColor(idx);
+      },
+    },
   };
 </script>
 
@@ -22,7 +28,6 @@
     margin: 20px auto;
     display: flex;
     width: 160px;
-    background-color: gainsboro;
   }
   .box {
     height: 40px;
@@ -30,5 +35,8 @@
   }
   .box:hover {
     cursor: pointer;
+  }
+  .add-border {
+    border: 2px solid #323232;
   }
 </style>

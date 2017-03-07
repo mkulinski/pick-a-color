@@ -1,6 +1,12 @@
-# learnvue
+# Pick A Color ToDo
 
 > A Vue.js project
+
+## Home
+> Container component for adding text and picking a color.
+
+## About
+> Container component to show nested routes with vue-router.
 
 ## Build Setup
 
