@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <Navi />
+    <Navigation />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import Navi from '@/components/Navi';
+  import Navigation from '@/components/post/Navigation';
 
   export default {
     name: 'app',
     components: {
-      Navi,
+      Navigation,
     },
   };
 </script>
@@ -24,6 +24,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
